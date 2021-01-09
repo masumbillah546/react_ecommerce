@@ -100,7 +100,8 @@ class FrontendController extends Controller
         // Sort by name , price, category
 
       
-        return view('frontend.pages.product-grids')->with('products',$products)->with('recent_products',$recent_products);
+        //return view('frontend.pages.product-grids')->with('products',$products)->with('recent_products',$recent_products);
+        return Response('data', $products);
     }
     public function productLists(){
         $products=Product::query();

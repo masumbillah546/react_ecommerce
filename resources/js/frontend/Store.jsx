@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Axios from 'axios';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,6 +14,37 @@ class Store extends Component {
 
     // constructor(props) {
     //     super(props);
+    // }
+    
+
+    // state = {
+    //     users:[]
+    // }
+    
+    fetchUsers() {
+    	//console.log('hello');
+        fetch('/product-grids')
+        .then(response => {
+        	console.log(response);
+            // response.json().then(function(data) {
+            
+            //  console.log(data);
+            //     if(data.success === 1){
+            //         this.setState({
+            //             users:data.users.reverse()
+            //         });
+            //     } 
+            //     else{
+            //         //this.context.post_show(false);
+            //     }               
+            // }.bind(this));
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+    // componentDidMount(){
+    //     this.fetchUsers();
     // }
 
     render() {
