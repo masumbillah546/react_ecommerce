@@ -43,9 +43,9 @@ class Store extends Component {
             console.log(error);
         });
     }
-    // componentDidMount(){
-    //     this.fetchUsers();
-    // }
+    componentDidMount(){
+        this.fetchUsers();
+    }
 
     render() {
         return (

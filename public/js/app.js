@@ -82316,10 +82316,12 @@ var Store = /*#__PURE__*/function (_Component) {
       })["catch"](function (error) {
         console.log(error);
       });
-    } // componentDidMount(){
-    //     this.fetchUsers();
-    // }
-
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.fetchUsers();
+    }
   }, {
     key: "render",
     value: function render() {
