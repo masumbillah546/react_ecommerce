@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 class Footer extends Component {
     // static propTypes = {
-    //     className: PropTypes.string,
+    //     classNameName: PropTypes.string,
     // };
 
     // constructor(props) {
@@ -15,30 +15,30 @@ class Footer extends Component {
         	<div>
         		
         {/* NEWSLETTER */}
-		<div id="newsletter" class="section">
+		<div id="newsletter" className="section">
 			{/* container */}
-			<div class="container">
+			<div className="container">
 				{/* row */}
-				<div class="row">
-					<div class="col-md-12">
-						<div class="newsletter">
+				<div className="row">
+					<div className="col-md-12">
+						<div className="newsletter">
 							<p>Sign Up for the <strong>NEWSLETTER</strong></p>
 							<form>
-								<input class="input" type="email" placeholder="Enter Your Email" />
-								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+								<input className="input" type="email" placeholder="Enter Your Email" />
+								<button className="newsletter-btn"><i className="fa fa-envelope"></i> Subscribe</button>
 							</form>
-							<ul class="newsletter-follow">
+							<ul className="newsletter-follow">
 								<li>
-									<a href="#"><i class="fa fa-facebook"></i></a>
+									<a href="#"><i className="fa fa-facebook"></i></a>
 								</li>
 								<li>
-									<a href="#"><i class="fa fa-twitter"></i></a>
+									<a href="#"><i className="fa fa-twitter"></i></a>
 								</li>
 								<li>
-									<a href="#"><i class="fa fa-instagram"></i></a>
+									<a href="#"><i className="fa fa-instagram"></i></a>
 								</li>
 								<li>
-									<a href="#"><i class="fa fa-pinterest"></i></a>
+									<a href="#"><i className="fa fa-pinterest"></i></a>
 								</li>
 							</ul>
 						</div>
@@ -53,27 +53,27 @@ class Footer extends Component {
 		{/* FOOTER */}
 		<footer id="footer">
 			{/* top footer */}
-			<div class="section">
+			<div className="section">
 				{/* container */}
-				<div class="container">
+				<div className="container">
 					{/* row */}
-					<div class="row">
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">About Us</h3>
+					<div className="row">
+						<div className="col-md-3 col-xs-6">
+							<div className="footer">
+								<h3 className="footer-title">About Us</h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
-								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+								<ul className="footer-links">
+									<li><a href="#"><i className="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
+									<li><a href="#"><i className="fa fa-phone"></i>+021-95-51-84</a></li>
+									<li><a href="#"><i className="fa fa-envelope-o"></i>email@email.com</a></li>
 								</ul>
 							</div>
 						</div>
 
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Categories</h3>
-								<ul class="footer-links">
+						<div className="col-md-3 col-xs-6">
+							<div className="footer">
+								<h3 className="footer-title">Categories</h3>
+								<ul className="footer-links">
 									<li><a href="#">Hot deals</a></li>
 									<li><a href="#">Laptops</a></li>
 									<li><a href="#">Smartphones</a></li>
@@ -83,12 +83,12 @@ class Footer extends Component {
 							</div>
 						</div>
 
-						<div class="clearfix visible-xs"></div>
+						<div className="clearfix visible-xs"></div>
 
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Information</h3>
-								<ul class="footer-links">
+						<div className="col-md-3 col-xs-6">
+							<div className="footer">
+								<h3 className="footer-title">Information</h3>
+								<ul className="footer-links">
 									<li><a href="#">About Us</a></li>
 									<li><a href="#">Contact Us</a></li>
 									<li><a href="#">Privacy Policy</a></li>
@@ -98,10 +98,10 @@ class Footer extends Component {
 							</div>
 						</div>
 
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">Service</h3>
-								<ul class="footer-links">
+						<div className="col-md-3 col-xs-6">
+							<div className="footer">
+								<h3 className="footer-title">Service</h3>
+								<ul className="footer-links">
 									<li><a href="#">My Account</a></li>
 									<li><a href="#">View Cart</a></li>
 									<li><a href="#">Wishlist</a></li>
@@ -118,22 +118,22 @@ class Footer extends Component {
 			{/*top footer */}
 
 			{/* bottom footer */}
-			<div id="bottom-footer" class="section">
-				<div class="container">
+			<div id="bottom-footer" className="section">
+				<div className="container">
 					{/* row */}
-					<div class="row">
-						<div class="col-md-12 text-center">
-							<ul class="footer-payments">
-								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
-								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+					<div className="row">
+						<div className="col-md-12 text-center">
+							<ul className="footer-payments">
+								<li><a href="#"><i className="fa fa-cc-visa"></i></a></li>
+								<li><a href="#"><i className="fa fa-credit-card"></i></a></li>
+								<li><a href="#"><i className="fa fa-cc-paypal"></i></a></li>
+								<li><a href="#"><i className="fa fa-cc-mastercard"></i></a></li>
+								<li><a href="#"><i className="fa fa-cc-discover"></i></a></li>
+								<li><a href="#"><i className="fa fa-cc-amex"></i></a></li>
 							</ul>
-							<span class="copyright">
+							<span className="copyright">
 								{/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>. 
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i className="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>. 
 Downloaded from <a href="https://themeslab.org/" target="_blank">Themeslab</a>
 							{/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
 							</span>

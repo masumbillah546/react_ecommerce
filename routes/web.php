@@ -12,6 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// include('web2.php');
+ include('web2.php');
 Route::view('/','frontend');
 Route::view('/admin','backend');
