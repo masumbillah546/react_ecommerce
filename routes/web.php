@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
- include('web2.php');
-Route::view('/','frontend');
-Route::view('/admin','backend');
+include('web2.php');
+
+Route::get('/{path}',function(){
+	return view('frontend');
+})->where('path','.*');
+// Route::view('/store','frontend');
+//Route::view('/admin','backend');

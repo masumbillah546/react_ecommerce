@@ -32,8 +32,8 @@ class App extends Component {
 				            <Home />
 				          </Route>
 				          
-				          <Route path="/store">
-				            <Store name="Masum Billah" />
+				          <Route exact path="/store">
+				            <Store  />
 				          </Route>
                   <Route path="/product">
                     <Product />

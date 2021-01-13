@@ -12,11 +12,12 @@ class Store extends Component {
     //     classNameName: PropTypes.string,
     // };
 
-    constructor(props) {
-        super(props);
-        console.log(this.props.name);
+    // constructor(props) {
+    //     super(props);
+    //     console.log(this.props.name);
+
         
-    }
+    // }
     
 
     state = {
@@ -31,11 +32,11 @@ class Store extends Component {
         .then(response => {
         	// console.log(response);})
             response.json().then(function(data) {
+             
             
-            // console.log(data);
                 // if(data.success === 1){
                     this.setState({
-                        products:data.product
+                        products:data.products
 
                     });
                   
@@ -51,10 +52,12 @@ class Store extends Component {
     }
     componentDidMount(){
         this.fetchUsers();
+
     }
 
     render() {
-    console.log(this.state.products);
+  
+        	 console.log(this.state.products);
         return (
             <div>
             			{/* BREADCRUMB */}
@@ -294,14 +297,16 @@ class Store extends Component {
 
 						{/* store products */}
 						<div className="row">
-							{/* product */}
-							{this.state.products.map(product=>(
-								product.title
-								))}
-							<div className="col-md-4 col-xs-6">
+
+							{/* product loop start*/}
+
+							{this.state.products.map((product,i)=>(
+								
+								
+							<div className="col-md-4 col-xs-6" key={i}>
 								<div className="product">
 									<div className="product-img">
-										<img src="electro/img/product01.png" alt="" />
+										<img src={product.photo} alt="" />
 										<div className="product-label">
 											<span className="sale">-30%</span>
 											<span className="new">NEW</span>
@@ -309,8 +314,8 @@ class Store extends Component {
 									</div>
 									<div className="product-body">
 										<p className="product-category">Category</p>
-										<h3 className="product-name"><a href="#">product name goes here</a></h3>
-										<h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
+										<h3 className="product-name"><a href="#">{product.title}</a></h3>
+										<h4 className="product-price">${product.price} <del className="product-old-price">$990.00</del></h4>
 										<div className="product-rating">
 											<i className="fa fa-star"></i>
 											<i className="fa fa-star"></i>
@@ -329,7 +334,10 @@ class Store extends Component {
 									</div>
 								</div>
 							</div>
-							{/*product */}
+							
+							))}
+
+							{/*product loop end */}
 
 						
 						</div>

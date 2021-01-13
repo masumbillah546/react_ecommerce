@@ -55,7 +55,7 @@ class FrontendController extends Controller
     }
 
     public function productGrids(){
-        // $products=Product::query();
+         // $products=Product::query();
         $products=Product::all();
         
         // if(!empty($_GET['category'])){
@@ -102,7 +102,7 @@ class FrontendController extends Controller
 
       
         //return view('frontend.pages.product-grids')->with('products',$products)->with('recent_products',$recent_products);
-        return response()->json(['product'=> $products]);
+        return response()->json(['products'=> $products]);
     }
     public function productLists(){
         $products=Product::query();
