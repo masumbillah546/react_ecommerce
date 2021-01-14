@@ -81037,6 +81037,92 @@ if (document.getElementById('root')) {
 
 /***/ }),
 
+/***/ "./resources/js/frontend/Gs.jsx":
+/*!**************************************!*\
+  !*** ./resources/js/frontend/Gs.jsx ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Counter; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // use global variable to store global state
+
+var count = 0; // function useGlobalState(globalState) {
+//     const [, setState2] = useState();
+//     const state = globalState.getValue();
+//     function reRender(newState) {
+//         // This will be called when the global state changes
+//         setState({});
+//     }
+//     useEffect(() => {
+//         // Subscribe to a global state when a component mounts
+//         globalState.subscribe(reRender);
+//         return () => {
+//             // Unsubscribe from a global state when a component unmounts
+//             globalState.unsubscribe(reRender);
+//         }
+//     })
+//     function setState(newState) {
+//         // Send update request to the global state and let it 
+//         // update itself
+//         globalState.setValue(newState);
+//     }
+//     return [State, setState2];
+// }
+
+function Counter(props) {
+  var incrementCount = function incrementCount(e) {
+    ++count;
+    console.log(count);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Count: ", count, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: incrementCount
+  }, "Click"));
+} // let globalCount = new GlobalState(0);
+// function Counter1(props){
+//     // using our `useGlobalState` hook
+//     const [count, setCount] = useGlobalState(globalCount);
+//     let incrementCount = (e) => {
+//         setCount(count + 1)
+//     }
+//     return (
+//         <div>
+//             Count: {count}
+//             <br/>
+//             <button onClick={incrementCount}>Click</button>
+//         </div>
+//     );
+// }
+// function Counter2(props){
+//     // using our `useGlobalState` hook
+//     const [count, setCount] = useGlobalState(globalCount);
+//     let incrementCount = (e) => {
+//         setCount(count + 1)
+//     }
+//     return (
+//         <div>
+//             Count: {count}
+//             <br/>
+//             <button onClick={incrementCount}>Click</button>
+//         </div>
+//     );
+// }
+// export default function Counters(props){
+//     return (
+//         <>
+//             <Counter1/>
+//             <Counter2/>
+//         </>
+//     );
+// }
+
+/***/ }),
+
 /***/ "./resources/js/frontend/Home.jsx":
 /*!****************************************!*\
   !*** ./resources/js/frontend/Home.jsx ***!
@@ -82250,6 +82336,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Gs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Gs */ "./resources/js/frontend/Gs.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -82275,6 +82362,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Product = /*#__PURE__*/function (_Component) {
   _inherits(Product, _Component);
 
@@ -82295,7 +82383,7 @@ var Product = /*#__PURE__*/function (_Component) {
     //     super(props);
     // }
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Gs__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "breadcrumb",
         className: "section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83045,15 +83133,16 @@ var Store = /*#__PURE__*/function (_Component) {
 
   var _super = _createSuper(Store);
 
-  // static propTypes = {
-  //     classNameName: PropTypes.string,
-  // };
-  function Store(props) {
+  function Store() {
     var _this;
 
     _classCallCheck(this, Store);
 
-    _this = _super.call(this, props);
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       products: []
@@ -83089,7 +83178,6 @@ var Store = /*#__PURE__*/function (_Component) {
       }, _callee);
     })));
 
-    console.log(_this.props.name);
     return _this;
   }
 

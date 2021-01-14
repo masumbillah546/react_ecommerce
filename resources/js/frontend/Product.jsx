@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Axios from 'axios';
+import Gs from './Gs';
 class Product extends Component {
     // static propTypes = {
     //     classNameName: PropTypes.string,
@@ -18,6 +19,7 @@ class Product extends Component {
     render() {
         return (
             <div>
+            <Gs />
             			{/* BREADCRUMB */}
 		<div id="breadcrumb" className="section">
 			{/* container */}
