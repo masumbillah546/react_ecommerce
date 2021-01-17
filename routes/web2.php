@@ -41,21 +41,27 @@ Route::get('/product-sub-cat/{slug}/{sub_slug}','FrontendController@productSubCa
 Route::get('/product-brand/{slug}','FrontendController@productBrand')->name('product-brand');
 // Cart section
 Route::get('/add-to-cart/{slug}','CartController@addToCart')->name('add-to-cart')->middleware('user');
-Route::post('/add-to-cart','CartController@singleAddToCart')->name('single-add-to-cart')->middleware('user');
+Route::get('/cart-list','CartController@CartList');
+Route::post('/add-to-cart','CartController@addToCart');
+// Route::post('/add-to-cart','CartController@singleAddToCart')->name('single-add-to-cart')->middleware('user');
+Route::get('cart-delete/{id}','CartController@cartDelete')->name('cart-delete');
 Route::get('cart-delete/{id}','CartController@cartDelete')->name('cart-delete');
 Route::post('cart-update','CartController@cartUpdate')->name('cart.update');
 
-Route::get('/cart',function(){
-    return view('frontend.pages.cart');
-})->name('cart');
-Route::get('/checkout','CartController@checkout')->name('checkout')->middleware('user');
+// Route::get('/cart',function(){
+//     return view('frontend.pages.cart');
+// })->name('cart');
+// Route::get('/checkout','CartController@checkout')->name('checkout')->middleware('user');
 // Wishlist
 Route::get('/wishlist',function(){
     return view('frontend.pages.wishlist');
 })->name('wishlist');
 Route::get('/wishlist/{slug}','WishlistController@wishlist')->name('add-to-wishlist')->middleware('user');
 Route::get('wishlist-delete/{id}','WishlistController@wishlistDelete')->name('wishlist-delete');
-Route::post('cart/order','OrderController@store')->name('cart.order');
+
+// Route::post('cart/order','OrderController@store')->name('cart.order');
+Route::post('order','OrderController@store')->name('cart.order');
+
 Route::get('order/pdf/{id}','OrderController@pdf')->name('order.pdf');
 Route::get('/income','OrderController@incomeChart')->name('product.order.income');
 // Route::get('/user/chart','AdminController@userPieChart')->name('user.piechart');

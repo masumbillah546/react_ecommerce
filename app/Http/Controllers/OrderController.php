@@ -12,6 +12,8 @@ use Notification;
 use Helper;
 use Illuminate\Support\Str;
 use App\Notifications\StatusNotification;
+use Illuminate\Support\Facades\DB;
+
 
 class OrderController extends Controller
 {
@@ -44,22 +46,55 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'first_name'=>'string|required',
-            'last_name'=>'string|required',
-            'address1'=>'string|required',
-            'address2'=>'string|nullable',
-            'coupon'=>'nullable|numeric',
-            'phone'=>'numeric|required',
-            'post_code'=>'string|nullable',
-            'email'=>'string|required'
-        ]);
-        // return $request->all();
 
-        if(empty(Cart::where('user_id',auth()->user()->id)->where('order_id',null)->first())){
-            request()->session()->flash('error','Cart is Empty !');
-            return back();
-        }
+            DB::insert('insert into orders (
+                order_number,
+                sub_total,
+                coupon,
+                total_amount,
+                quantity,
+                payment_method,
+                first_name,
+                last_name,
+                email,
+                phone,
+                country,
+                post_code,
+                address1,
+                created_at
+            ) values (?, ?,?,?, ?,?,?, ?,?,?, ?,?,?,?)', [
+                $request->order_number,
+                $request->sub_total, 
+                $request->coupon, 
+                $request->total_amount, 
+                $request->quantity, 
+                $request->payment_method, 
+                $request->first_name, 
+                $request->last_name, 
+                $request->email, 
+                $request->phone, 
+                $request->country, 
+                $request->post_code, 
+                $request->address1,
+                $request->date('Y/m/d'),
+            ]);
+         return response()->json(['success'=> "success"]);
+        // $this->validate($request,[
+        //     'first_name'=>'string|required',
+        //     'last_name'=>'string|required',
+        //     'address1'=>'string|required',
+        //     'address2'=>'string|nullable',
+        //     'coupon'=>'nullable|numeric',
+        //     'phone'=>'numeric|required',
+        //     'post_code'=>'string|nullable',
+        //     'email'=>'string|required'
+        // ]);
+        // // return $request->all();
+
+        // if(empty(Cart::where('user_id',auth()->user()->id)->where('order_id',null)->first())){
+        //     request()->session()->flash('error','Cart is Empty !');
+        //     return back();
+        // }
         // $cart=Cart::get();
         // // return $cart;
         // $cart_index='ORD-'.strtoupper(uniqid());
@@ -88,67 +123,67 @@ class OrderController extends Controller
         //         }
         // }
 
-        $order=new Order();
-        $order_data=$request->all();
-        $order_data['order_number']='ORD-'.strtoupper(Str::random(10));
-        $order_data['user_id']=$request->user()->id;
-        $order_data['shipping_id']=$request->shipping;
-        $shipping=Shipping::where('id',$order_data['shipping_id'])->pluck('price');
-        // return session('coupon')['value'];
-        $order_data['sub_total']=Helper::totalCartPrice();
-        $order_data['quantity']=Helper::cartCount();
-        if(session('coupon')){
-            $order_data['coupon']=session('coupon')['value'];
-        }
-        if($request->shipping){
-            if(session('coupon')){
-                $order_data['total_amount']=Helper::totalCartPrice()+$shipping[0]-session('coupon')['value'];
-            }
-            else{
-                $order_data['total_amount']=Helper::totalCartPrice()+$shipping[0];
-            }
-        }
-        else{
-            if(session('coupon')){
-                $order_data['total_amount']=Helper::totalCartPrice()-session('coupon')['value'];
-            }
-            else{
-                $order_data['total_amount']=Helper::totalCartPrice();
-            }
-        }
-        // return $order_data['total_amount'];
-        $order_data['status']="new";
-        if(request('payment_method')=='paypal'){
-            $order_data['payment_method']='paypal';
-            $order_data['payment_status']='paid';
-        }
-        else{
-            $order_data['payment_method']='cod';
-            $order_data['payment_status']='Unpaid';
-        }
-        $order->fill($order_data);
-        $status=$order->save();
-        if($order)
-        // dd($order->id);
-        $users=User::where('role','admin')->first();
-        $details=[
-            'title'=>'New order created',
-            'actionURL'=>route('order.show',$order->id),
-            'fas'=>'fa-file-alt'
-        ];
-        Notification::send($users, new StatusNotification($details));
-        if(request('payment_method')=='paypal'){
-            return redirect()->route('payment')->with(['id'=>$order->id]);
-        }
-        else{
-            session()->forget('cart');
-            session()->forget('coupon');
-        }
-        Cart::where('user_id', auth()->user()->id)->where('order_id', null)->update(['order_id' => $order->id]);
+        // $order=new Order();
+        // $order_data=$request->all();
+        // $order_data['order_number']='ORD-'.strtoupper(Str::random(10));
+        // $order_data['user_id']=$request->user()->id;
+        // $order_data['shipping_id']=$request->shipping;
+        // $shipping=Shipping::where('id',$order_data['shipping_id'])->pluck('price');
+        // // return session('coupon')['value'];
+        // $order_data['sub_total']=Helper::totalCartPrice();
+        // $order_data['quantity']=Helper::cartCount();
+        // if(session('coupon')){
+        //     $order_data['coupon']=session('coupon')['value'];
+        // }
+        // if($request->shipping){
+        //     if(session('coupon')){
+        //         $order_data['total_amount']=Helper::totalCartPrice()+$shipping[0]-session('coupon')['value'];
+        //     }
+        //     else{
+        //         $order_data['total_amount']=Helper::totalCartPrice()+$shipping[0];
+        //     }
+        // }
+        // else{
+        //     if(session('coupon')){
+        //         $order_data['total_amount']=Helper::totalCartPrice()-session('coupon')['value'];
+        //     }
+        //     else{
+        //         $order_data['total_amount']=Helper::totalCartPrice();
+        //     }
+        // }
+        // // return $order_data['total_amount'];
+        // $order_data['status']="new";
+        // if(request('payment_method')=='paypal'){
+        //     $order_data['payment_method']='paypal';
+        //     $order_data['payment_status']='paid';
+        // }
+        // else{
+        //     $order_data['payment_method']='cod';
+        //     $order_data['payment_status']='Unpaid';
+        // }
+        // $order->fill($order_data);
+        // $status=$order->save();
+        // if($order)
+        // // dd($order->id);
+        // $users=User::where('role','admin')->first();
+        // $details=[
+        //     'title'=>'New order created',
+        //     'actionURL'=>route('order.show',$order->id),
+        //     'fas'=>'fa-file-alt'
+        // ];
+        // Notification::send($users, new StatusNotification($details));
+        // if(request('payment_method')=='paypal'){
+        //     return redirect()->route('payment')->with(['id'=>$order->id]);
+        // }
+        // else{
+        //     session()->forget('cart');
+        //     session()->forget('coupon');
+        // }
+        // Cart::where('user_id', auth()->user()->id)->where('order_id', null)->update(['order_id' => $order->id]);
 
-        // dd($users);        
-        request()->session()->flash('success','Your product successfully placed in order');
-        return redirect()->route('home');
+        // // dd($users);        
+        // request()->session()->flash('success','Your product successfully placed in order');
+        // return redirect()->route('home');
     }
 
     /**
@@ -159,9 +194,18 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $order=Order::find($id);
+        // $order=Order::find($id);
+        // // return $order;
+        // return view('backend.order.show')->with('order',$order);
+            $order=Order::find($id);
+
+        $product_info = DB::table('carts')
+                          ->join('products', 'carts.product_id', '=', 'products.id')
+                          ->select('carts.*', 'products.id', 'products.title','products.photo','carts.price','carts.quantity')->where('carts.order_id', $id)
+                          ->get();
         // return $order;
-        return view('backend.order.show')->with('order',$order);
+        // return view('backend.order.show')->with('order',$order);
+        return view('backend.order.show' ,compact('order','product_info'));
     }
 
     /**

@@ -5,17 +5,37 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import {AppContext} from '../Context';
 
 class Header extends Component {
+	static contextType = AppContext;
     // static propTypes = {
     //     classNameName: PropTypes.string,
     // };
 
     // constructor(props) {
     //     super(props);
+    //     console.log(props.cart)
     // }
+    // state={
+    // 	cart:0,
+    // 	wishlist:0,
+    // }
+    componentDidMount(){
+       
+    	
+		  const script = document.createElement("script");
+		  script.src = "/electro/js/bootstrap.min.js";
+		  script.async = true;
+		  // script.onload = () => this.scriptLoaded();
+
+		  document.body.appendChild(script);
+		        
+
+    }
 
     render() {
+
         return (
             <div>
         {/* HEADER */}
@@ -76,18 +96,18 @@ class Header extends Component {
 									<a href="#">
 										<i className="fa fa-heart-o"></i>
 										<span>Your Wishlist</span>
-										<div className="qty">2</div>
+										<div className="qty">{this.context.wishlist}</div>
 									</a>
 								</div>
 								{/*Wishlist */}
 
 								{/* Cart */}
 								<div className="dropdown">
-									<a className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+									<Link to="cart">
 										<i className="fa fa-shopping-cart"></i>
 										<span>Your Cart</span>
-										<div className="qty">3</div>
-									</a>
+										<div className="qty">{this.context.cart}</div>
+									</Link>
 									<div className="cart-dropdown">
 										<div className="cart-list">
 											<div className="product-widget">
@@ -155,9 +175,9 @@ class Header extends Component {
 						<li className="active"><Link to="/">Home</Link></li>
 						<li><Link to="store">Store</Link></li>
 						<li><Link to="product">Product</Link></li>
-						<li><Link to="#">Hot Deals</Link></li>
+						<li><Link to="checkout">Checkout</Link></li>
 						<li><Link to="#">Categories</Link></li>
-						<li><Link to="#">Laptops</Link></li>
+						<li><Link to="cart">Cart</Link></li>
 						<li><Link to="#">Smartphones</Link></li>
 						<li><Link to="#">Cameras</Link></li>
 						<li><Link to="#">Accessories</Link></li>

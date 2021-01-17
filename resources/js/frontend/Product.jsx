@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import Axios from 'axios';
 import Gs from './Gs';
+import {AppContext} from './Context';
 class Product extends Component {
+	 static contextType = AppContext;
     // static propTypes = {
     //     classNameName: PropTypes.string,
     // };
@@ -10,7 +12,18 @@ class Product extends Component {
     //     super(props);
     // }
     
+     componentDidMount(){
+       
 
+		  const script = document.createElement("script");
+		  script.src = "/electro/js/main.js";
+		  script.async = true;
+		  script.onload = () => this.scriptLoaded();
+
+		  document.body.appendChild(script);
+		        
+
+    }
 
     
 

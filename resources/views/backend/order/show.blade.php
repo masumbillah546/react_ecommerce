@@ -32,7 +32,9 @@
             <td>{{$order->first_name}} {{$order->last_name}}</td>
             <td>{{$order->email}}</td>
             <td>{{$order->quantity}}</td>
+           
             <td>@foreach($shipping_charge as $data) $ {{number_format($data,2)}} @endforeach</td>
+          
             <td>${{number_format($order->total_amount,2)}}</td>
             <td>
                 @if($order->status=='new')
@@ -60,8 +62,47 @@
 
     <section class="confirmation_part section_padding">
       <div class="order_boxes">
+        
+          <div class="row">
+
+
+            <div class="col-lg-12 col-lx-4" >
+            <div class="order-info" >
+              <h4 class="text-center pb-4">PRODUCT INFORMATION</h4>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Product ID</th>
+                    <th>Product Title</th>
+                    <th>Product Price</th>
+                    <th>Product Quantity</th>
+                    <th>Product Photo</th>
+                  </tr>
+                </thead>
+                     <tbody>
+                   @foreach($product_info as $data)
+                   <tr>
+                     <td>{{$data->id}}</td>
+                     <td>{{$data->title}}</td>
+                     <td>{{$data->price}}</td>
+                     <td>{{$data->quantity}}</td>
+                     <td><img height="40" src="{{$data->photo}}"></td>
+                   
+                   </tr>
+                   
+                   @endforeach
+                 </tbody>
+              </table>
+            </div>
+          </div>
+
+
+
+
+        </div>
         <div class="row">
-          <div class="col-lg-6 col-lx-4">
+
+          <div class="col-lg-6 col-lx-4"><br><br>
             <div class="order-info">
               <h4 class="text-center pb-4">ORDER INFORMATION</h4>
               <table class="table">
@@ -86,7 +127,10 @@
                           $shipping_charge=DB::table('shippings')->where('id',$order->shipping_id)->pluck('price');
                       @endphp
                         <td>Shipping Charge</td>
+                         @if($shipping_charge->count())
                         <td> : $ {{number_format($shipping_charge[0],2)}}</td>
+                        @endif
+                        <td>: 0</td>
                     </tr>
                     <tr>
                       <td>Coupon</td>
@@ -107,8 +151,7 @@
               </table>
             </div>
           </div>
-
-          <div class="col-lg-6 col-lx-4">
+                    <div class="col-lg-6 col-lx-4"><br><br>
             <div class="shipping-info">
               <h4 class="text-center pb-4">SHIPPING INFORMATION</h4>
               <table class="table">
@@ -139,7 +182,8 @@
               </table>
             </div>
           </div>
-        </div>
+</div>
+
       </div>
     </section>
     @endif

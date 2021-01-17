@@ -8,6 +8,16 @@ class Footer extends Component {
     // constructor(props) {
     //     super(props);
     // }
+    componentDidMount() {
+	  // const script = document.createElement("script");
+	  // script.src = "/electro/js/jquery.min.js";
+	  // script.src = "/electro/js/bootstrap.min.js";
+	  // script.async = true;
+	  // script.onload = () => this.scriptLoaded();
+
+	  // document.body.appendChild(script);
+	  // 
+	}
 
     render() {
         return (

@@ -11,6 +11,20 @@ class Home extends Component {
    //console.log(url);
     }
     
+     componentDidMount(){
+       
+
+          const script = document.createElement("script");
+          script.src = "/electro/js/main.js";
+          script.async = true;
+          // script.onload = () => this.scriptLoaded();
+
+          document.body.appendChild(script);
+                
+
+    }
+
+
     render() {
         return (
         <div>
